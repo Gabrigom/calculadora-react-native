@@ -48,10 +48,22 @@ export default function App() {
     }
   };
 
+    // Função para limpar os campos
+    const limparCampos = () => {
+      setPriVal('');
+      setSegVal('');
+      setResult('');
+    };
+
   return (
     <View style={styles.container}>
 
+    <Text style={styles.title}>
+        Calculadora do Vinibiel
+    </Text>
+
     <TextInput
+    style={styles.input}
     placeholder='Valor 1'
     value={priVal}
     onChangeText={(text) => setPriVal(text)}
@@ -59,11 +71,14 @@ export default function App() {
     />
 
     <TextInput
+    style={styles.input}
     placeholder='Valor 2'
     value={segVal}
     onChangeText={(text) => setSegVal(text)}
     keyboardType='numeric'
     />
+
+    <Text style={styles.title}> Escolha a operação </Text>
 
     <View style={styles.buttonRow}>
       <Button title="+" onPress={() => calculo('+')} />
@@ -72,7 +87,9 @@ export default function App() {
       <Button title="/" onPress={() => calculo('/')} />
     </View>
 
-    <Text style={styles.result}> {result} </Text>
+    <Button title="Limpar" onPress={limparCampos} color="red" />
+
+    <Text style={styles.result}>Resultado: {result} </Text>
     </View>
   );
 }
@@ -97,8 +114,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   result: {
-    fontSize: 24,
+    fontSize: 22,
     textAlign: 'center',
     color: 'green',
   },
+  title: {
+    fontSize: 18,
+    margin: 35
+  }
 });
